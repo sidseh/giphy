@@ -43,7 +43,7 @@ $('#footballSearchBTN').on('click', function(){
 $('#buttonHolder').on('click', '.football', function(){
 	$('#gifDiv').empty();
 	var footballData = $(this).data('name');
-    var footballURL = "http://api.giphy.com/v1/gifs/search?q=" + footballData + "&api_key=dc6zaTOxFJmzC&limit=10";
+    var footballURL = "http://api.giphy.com/v1/gifs/search?q=" + footballData + "+footballers&api_key=dc6zaTOxFJmzC&limit=10";
 
 
     $.ajax({url: footballURL, method: 'GET'}).done(function(response) {
@@ -53,27 +53,25 @@ $('#buttonHolder').on('click', '.football', function(){
     		var footballDiv = $('<div>');
     		footballDiv.addClass('footballHolder');
 
-//get movie images
+//get footballers images
     		var footballImg = $('<img>');
     		footballImg.addClass('gifClass');
     		footballImg.attr('src', results[i].images.fixed_height.url);
     		footballImg.attr('data-still', results[i].images.fixed_height_still.url);
     		footballImg.attr('data-animate', results[i].images.fixed_height.url);
     		footballImg.attr('data-state', 'animate');
-    		footballImg.attr('alt', 'movie gif');
-//append elements to movie div
+    		footballImg.attr('alt', 'football gif');
+//append elements to football div
     		
     		footballDiv.append(footballImg);
 	    	$('#gifDiv').append(footballDiv);
     	}
 //warning message if no gifs exist
     	if(results.length == 0) {
-    		$('#gifDiv').append("<p class='warning'>I'm Sorry. No gifs currently exist for this search</p><p class='warning'>Please try another movie<p>");
+    		$('#gifDiv').append("<p class='warning'>I'm Sorry. No gifs currently exist for this search</p><p class='warning'>Please try <again></again><p>");
     	}
     });
-//add active class to buttons
-    $(this).siblings().removeClass('active1')
-    $(this).addClass('active1');
+
   });
 
 //pause image on click
